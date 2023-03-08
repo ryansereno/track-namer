@@ -17,7 +17,7 @@
 <!-- ABOUT THE PROJECT -->
 Basic Python script to automate the renaming of music files based on their meta data
 <br/>
-Files well me renames to `trackname.mp3`
+Files will be renamed to `trackname.mp3`
 
 </div>
 
