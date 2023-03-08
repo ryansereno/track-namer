@@ -1,16 +1,21 @@
-import os
 from mutagen.easyid3 import EasyID3
+import os
 
-# Set the directory containing the MP3 files
-directory = "/path/to/mp3/files"
+print("input directory for processing: ")
+path = input()
+os.chdir(path)
 
-# Loop through all the files in the directory
-for filename in os.listdir(directory):
-    if filename.endswith(".mp3"):
-        # Load the metadata of the MP3 file
-        audio = EasyID3(os.path.join(directory, filename))
-        # Get the title of the track from the metadata
-        trackname = audio['title'][0]
-        # Rename the file to the track name
-        os.rename(os.path.join(directory, filename), os.path.join(directory, trackname + ".mp3"))
+file_list = filter((lambda x: '.mp3' in x), os.listdir(path))
 
+for file in file_list:
+        print("file: "+file)
+        if file.endswith(".mp3"): 
+                try:
+                        current = EasyID3(file)
+                        newname = current["title"][0] + ".mp3"
+                        newname.replace(" ", "_")
+                        del current
+                        print("renaming "+file+" to "+newname)
+                        os.rename(file, newname)
+                except:
+                        print("there was an error")
